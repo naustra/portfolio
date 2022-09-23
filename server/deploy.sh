@@ -19,7 +19,7 @@ git init
 git config --global user.email "pierre@le-bihan.eu"
 git config --global user.name "Pierre LE BIHAN"
 git checkout -b main
-git add -A
+git add -Af
 git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io
