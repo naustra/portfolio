@@ -28,6 +28,21 @@ jobs:
       - name: Node ${{ matrix.node-version }}
         uses: actions/setup-node@v2
 
+      - name: Copy SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          sudo chmod 600 ~/.ssh/id_rsa
+          echo "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+
+      - name: Change ssh key file permissions
+        run: |
+          chmod go-rwx ~/.ssh/id_rsa
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: server/deploy.sh
