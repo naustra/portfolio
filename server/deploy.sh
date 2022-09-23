@@ -16,6 +16,8 @@ rm -Rf .git
 # echo 'www.example.com' > CNAME
 
 git init
+git config --global user.email "pierre@le-bihan.eu"
+git config --global user.name "Pierre LE BIHAN"
 git checkout -b main
 git add -A
 git commit -m 'deploy'
